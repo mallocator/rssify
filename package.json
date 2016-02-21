@@ -1,0 +1,47 @@
+{
+  "name": "rssify",
+  "version": "0.0.1",
+  "description": "Turns web pages into an rss feeds",
+  "main": "index.js",
+  "homepage": "https://github.com/mallocator/rssify",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mallocator/rssify.git"
+  },
+  "keywords": [
+    "rss",
+    "crawler",
+    "scraper",
+    "feed",
+    "builder"
+  ],
+  "author": "Ravi Gairola <mallox@pyxzl.net>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mallocator/rssify/issues",
+    "email": "mallox@pyxzl.net"
+  },
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "rss": "^1.2.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "coveralls": "^2.11.4",
+    "gently": "^0.10.0",
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4",
+    "mocha-lcov-reporter": "^1.0.0"
+  },
+  "engine": {
+    "node": ">=5.0"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "scripts": {
+    "test": "istanbul cover _mocha -- --recursive",
+    "test-travis": "istanbul cover _mocha --report lcovonly -- -R spec --recursive"
+  }
+}

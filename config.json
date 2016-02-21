@@ -1,0 +1,47 @@
+{
+  "global": {
+    "interval": 60,
+    "size": 20,
+    "debug": true,
+    "storage": "file",
+    "host": "localhost:10001",
+    "port": "10001",
+    "fields": [
+      {
+        "field": "categories",
+        "content": "comics"
+      }
+    ]
+  },
+  "biff": {
+    "url": "http://thebookofbiff.com/",
+    "fields": [
+      {
+        "field": "description",
+        "selector": "#comic-1 > a > img",
+        "attr": "src",
+        "format": "<img src=\"%s\" />"
+      },
+      {
+        "field": "title",
+        "selector": "#comic-1 > a > img",
+        "attr": "alt"
+      }
+    ]
+  },
+  "wizard": {
+    "url": "http://www.gocomics.com/wizardofid",
+    "fields": [
+      {
+        "field": "description",
+        "selector": ".feature_item .strip",
+        "attr": "src",
+        "format": "<img src=\"%s\" />"
+      },
+      {
+        "field": "title",
+        "evaluate": "return new Date().toDateString();"
+      }
+    ]
+  }
+}
