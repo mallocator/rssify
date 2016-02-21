@@ -1,2 +1,2 @@
 # rssify
-Turns web pages into an rss feeds
+Turns web pages into rss feeds
