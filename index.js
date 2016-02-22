@@ -1,9 +1,8 @@
 'use strict';
 
-var rssify = require('./lib/main');
+process.on('uncaughtException', console.log);
 
-//process.on('uncaughtException', console.log);
+var config = process.argv.pop();
+config = config.match(/\.json$/) ? require('path').resolve(config) : './config.json';
 
-var config = require('./config.json');
-
-rssify.initialize(config);
+require('./lib/main').initialize(require(config));

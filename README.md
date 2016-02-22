@@ -1,4 +1,9 @@
 # rssify
+[![npm version](https://badge.fury.io/js/rssify.svg)](http://badge.fury.io/js/rssify)
+[![Build Status](https://travis-ci.org/mallocator/rssify.svg?branch=master)](https://travis-ci.org/mallocator/rssify)
+[![Coverage Status](https://coveralls.io/repos/mallocator/rssify/badge.svg?branch=master&service=github)](https://coveralls.io/github/mallocator/rssify?branch=master)
+[![Dependency Status](https://david-dm.org/mallocator/rssify.svg)](https://david-dm.org/mallocator/rssify) 
+
 Turns web pages into rss feeds
 
 ## About
@@ -21,10 +26,18 @@ that content as rss feed:
 
 ```npm install rssify```
 
+## Daemonizing
+
+If you want to have the server run as a daemon I recommend using a 3rd party tool such as 
+[initid-forever](https://github.com/92bondstreet/initd-forever)
+
 ## Running
 
-With node installed just go to the project folder and run ```node .```. I might add a shell script to run it when
-installed globally
+With node installed just go to the project folder and run ```node .```. If you installed the library globally you should 
+have a new executable available called ```rssify```. 
+
+There's only one (optional) argument the script accepts and that is the location of config file. Where ever you decide
+to put your config, make sure it ends with .json, otherwise the program will not know how to parse it.
 
 ## Configuration
 

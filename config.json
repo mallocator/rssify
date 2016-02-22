@@ -13,6 +13,71 @@
       }
     ]
   },
+  "cad": {
+    "url": "http://www.cad-comic.com/cad/",
+    "fields": [
+      {
+        "field": "description",
+        "selector": "#content img",
+        "attr": "src",
+        "format": "<img src=\"%s\" />"
+      },
+      {
+        "field": "title",
+        "selector": "#content img",
+        "attr": "title"
+      }
+    ]
+  },
+  "cad_sillies": {
+    "url": "http://www.cad-comic.com/sillies/",
+    "fields": [
+      {
+        "field": "description",
+        "selector": "#content img",
+        "attr": "src",
+        "format": "<img src=\"%s\" />"
+      },
+      {
+        "field": "title",
+        "selector": "#content img",
+        "attr": "title",
+        "evaluate": "return content || new Date().toDateString();"
+      }
+    ]
+  },
+  "minimumble": {
+    "url": "http://minimumble.thebookofbiff.com/",
+    "fields": [
+      {
+        "field": "description",
+        "selector": "#comic-1 > a > img",
+        "attr": "src",
+        "format": "<img src=\"%s\" />"
+      },
+      {
+        "field": "title",
+        "selector": "#comic-1 > a > img",
+        "attr": "alt"
+      }
+    ]
+  },
+  "maximumble": {
+    "url": "http://maximumble.thebookofbiff.com/",
+    "fields": [
+      {
+        "field": "description",
+        "selector": "#comic-1 > a > img",
+        "attr": "src",
+        "format": "<img src=\"%s\" />"
+      },
+      {
+        "field": "title",
+        "selector": "#comic-1 > a > img",
+        "attr": "alt"
+      }
+    ]
+  },
   "biff": {
     "url": "http://thebookofbiff.com/",
     "fields": [
@@ -31,6 +96,36 @@
   },
   "wizard": {
     "url": "http://www.gocomics.com/wizardofid",
+    "fields": [
+      {
+        "field": "description",
+        "selector": ".feature_item .strip",
+        "attr": "src",
+        "format": "<img src=\"%s\" />"
+      },
+      {
+        "field": "title",
+        "evaluate": "return new Date().toDateString();"
+      }
+    ]
+  },
+  "ckennel": {
+    "url": "http://www.gocomics.com/dogsofckennel",
+    "fields": [
+      {
+        "field": "description",
+        "selector": ".feature_item .strip",
+        "attr": "src",
+        "format": "<img src=\"%s\" />"
+      },
+      {
+        "field": "title",
+        "evaluate": "return new Date().toDateString();"
+      }
+    ]
+  },
+  "bc": {
+    "url": "http://www.gocomics.com/bc",
     "fields": [
       {
         "field": "description",
