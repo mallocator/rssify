@@ -7,11 +7,23 @@ var main = require('../lib/main');
 describe('main.js', () => {
     describe('#applyGlobals()', () => {
         it('should apply all the global options to the individual options', () => {
-
-        });
-
-        it('should combine al global fields with indiviual field configs', () => {
-
+            var config = {
+                global: {
+                    prop1: 'value1',
+                    prop2: 2,
+                    prop3: true,
+                    prop4: 'success'
+                },
+                testFeed: {
+                    prop1: 'value2',
+                    prop4: ['Yay!']
+                }
+            };
+            main.applyGlobals(config);
+            expect(config.testFeed.prop1).to.equal('value2');
+            expect(config.testFeed.prop2).to.equal(2);
+            expect(config.testFeed.prop3).to.equal(true);
+            expect(config.testFeed.prop4).to.deep.equal(['Yay!', 'success']);
         });
     });
 

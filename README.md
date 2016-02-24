@@ -44,34 +44,35 @@ to put your config, make sure it ends with .json, otherwise the program will not
 The configuration is stored in a file called config.json in the project directory and consists of 2 basic elements. 
 The global element holds certain properties that are used by the environment, which are:
 
-```debug``` Wether you want the server to print a few message or want it to shut up
-```storage``` Right now supports "file" or "meme"
-```port``` The port the server is going to listen on for incoming requests
-```host``` The hostname used when generating the rss feed, that a reader can link back to
+```debug``` Wether you want the server to print a few message or want it to shut up  
+```storage``` Right now supports "file" or "meme"  
+```path``` Used with file storage, configures the location on disk (default = <rssify-dir>/feeds)  
+```port``` The port the server is going to listen on for incoming requests  
+```host``` The hostname used when generating the rss feed, that a reader can link back to (defaults to http://localhost:10001)  
 
 Other elements of the global config will be applied to each of the feed configs.
 
 Feed configs are defined by their feed name as property and the configuration object:
 
-```url``` The address where the server should check for updates
-```interval``` The interval in minutes between crawling a web page again
-```size``` The maximum number of items that are reporting on this feed
-```fields``` An array of field configurations. See below for more info.
+```url``` The address where the server should check for updates  
+```interval``` The interval in minutes between crawling a web page again  
+```size``` The maximum number of items that are reporting on this feed  
+```fields``` An array of field configurations. See below for more info.  
 
 Fields are mapped directly to the rss item properties. The fields are used to define where to grab content from and
 potentially transform it:
 
-```field``` Name of the field as it will appear in the rss feed
-```selector``` a cheerio/jquery selector. If multiple elements are selected, they will be concatenated.
+```field``` Name of the field as it will appear in the rss feed  
+```selector``` a cheerio/jquery selector. If multiple elements are selected, they will be concatenated.  
 ```attr``` The attribute of the selected element to use ("text" and "html" are special values that will return the 
-content). This field is only evaluated if a selector has been set.
+content). This field is only evaluated if a selector has been set.  
 ```format``` A standard util.format string that gets the content from selected + attribute passed in as string. Will 
 only be evaluated if a selector has been set and is applied to each individual element if a selector returns more than
-one
+one  
 ```evaluate``` A javascript string that's passed in to eval(). The concatenated content (if any) is available for
-maniupulation, but really any javascript can be used to return content.
+manipulation, but really any javascript can be used to return content.  
 ```content``` Used to set a static string as content. If any of the other methods produces a string, this value will be
-overwritten.
+overwritten.  
 
 To see an example just take a look at the [config](./config.json).
  

@@ -1,6 +1,6 @@
 {
   "name": "rssify",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Turns web pages into an rss feeds",
   "main": "index.js",
   "homepage": "https://github.com/mallocator/rssify",
