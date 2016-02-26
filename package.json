@@ -1,6 +1,6 @@
 {
   "name": "rssify",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Turns web pages into an rss feeds",
   "main": "index.js",
   "homepage": "https://github.com/mallocator/rssify",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "cheerio": "^0.20.0",
+    "gently": "^0.10.0",
     "initd-forever": "^0.1.8",
     "rss": "^1.2.1"
   },

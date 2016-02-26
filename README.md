@@ -57,6 +57,7 @@ Feed configs are defined by their feed name as property and the configuration ob
 ```url``` The address where the server should check for updates  
 ```interval``` The interval in minutes between crawling a web page again  
 ```size``` The maximum number of items that are reporting on this feed  
+```validate``` An array of field names that will be checked to determine if content has changed/updated
 ```fields``` An array of field configurations. See below for more info.  
 
 Fields are mapped directly to the rss item properties. The fields are used to define where to grab content from and
@@ -76,3 +77,8 @@ overwritten.
 
 To see an example just take a look at the [config](./config.json).
  
+
+## Getting Feedly to work
+
+Feedly needs some extra love to understand this feed. To help it along the way you can use 
+[feedburner](https://feedburner.google.com/) to host a compatible version. 

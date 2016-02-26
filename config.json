@@ -13,8 +13,8 @@
       }
     ]
   },
-  "cad": {
-    "url": "http://www.cad-comic.com/cad/",
+  "example1": {
+    "url": "http://www.example1.com/",
     "fields": [
       {
         "field": "description",
@@ -29,25 +29,8 @@
       }
     ]
   },
-  "cad_sillies": {
-    "url": "http://www.cad-comic.com/sillies/",
-    "fields": [
-      {
-        "field": "description",
-        "selector": "#content img",
-        "attr": "src",
-        "format": "<img src=\"%s\" />"
-      },
-      {
-        "field": "title",
-        "selector": "#content img",
-        "attr": "title",
-        "evaluate": "return content || new Date().toDateString();"
-      }
-    ]
-  },
-  "minimumble": {
-    "url": "http://minimumble.thebookofbiff.com/",
+  "example2": {
+    "url": "http://example2.com/",
     "fields": [
       {
         "field": "description",
@@ -62,70 +45,9 @@
       }
     ]
   },
-  "maximumble": {
-    "url": "http://maximumble.thebookofbiff.com/",
-    "fields": [
-      {
-        "field": "description",
-        "selector": "#comic-1 > a > img",
-        "attr": "src",
-        "format": "<img src=\"%s\" />"
-      },
-      {
-        "field": "title",
-        "selector": "#comic-1 > a > img",
-        "attr": "alt"
-      }
-    ]
-  },
-  "biff": {
-    "url": "http://thebookofbiff.com/",
-    "fields": [
-      {
-        "field": "description",
-        "selector": "#comic-1 > a > img",
-        "attr": "src",
-        "format": "<img src=\"%s\" />"
-      },
-      {
-        "field": "title",
-        "selector": "#comic-1 > a > img",
-        "attr": "alt"
-      }
-    ]
-  },
-  "wizard": {
-    "url": "http://www.gocomics.com/wizardofid",
-    "fields": [
-      {
-        "field": "description",
-        "selector": ".feature_item .strip",
-        "attr": "src",
-        "format": "<img src=\"%s\" />"
-      },
-      {
-        "field": "title",
-        "evaluate": "return new Date().toDateString();"
-      }
-    ]
-  },
-  "ckennel": {
-    "url": "http://www.gocomics.com/dogsofckennel",
-    "fields": [
-      {
-        "field": "description",
-        "selector": ".feature_item .strip",
-        "attr": "src",
-        "format": "<img src=\"%s\" />"
-      },
-      {
-        "field": "title",
-        "evaluate": "return new Date().toDateString();"
-      }
-    ]
-  },
-  "bc": {
-    "url": "http://www.gocomics.com/bc",
+  "example3": {
+    "url": "http://my.example3.com",
+    "validate": "description",
     "fields": [
       {
         "field": "description",
