@@ -1,6 +1,9 @@
 'use strict';
 
+var events = require('events');
+var fs = require('fs');
 var http = require('http');
+var path = require('path');
 
 var expect = require('chai').expect;
 var gently = new (require('gently'));
@@ -8,6 +11,8 @@ var gently = new (require('gently'));
 var rss = require('../lib/rss');
 
 describe('rss.js', () => {
+    rss.storage = {};
+
     describe('#checkHeader()', () => {
         before(() => {
             gently.expect(http, 'request', 4, (options, cb) => {
@@ -163,11 +168,113 @@ describe('rss.js', () => {
     });
 
     describe('#update()', () => {
+        beforeEach(() => {
+            gently.expect(rss, 'checkHeader', (config, cb) => {
+                cb(false);
+            });
 
+            gently.expect(http, 'get', (url, cb) => {
+                var res = new events.EventEmitter();
+                cb(res);
+                res.emit('data', fs.readFileSync(path.join(__dirname, 'sample.html')));
+                res.emit('end');
+            });
+        });
+        afterEach(() => gently.verify());
+
+        it('should process feed with constant content', done => {
+            var config = {
+                url: 'test.url',
+                fields: [{
+                    field: 'testField',
+                    content: 'testContent'
+                }]
+            };
+
+            rss.update(config, (err, result) => {
+                expect(result.url).to.equal('test.url');
+                expect(result.testField).to.equal('testContent');
+                expect(result.date).to.be.instanceof(Date);
+                done();
+            })
+        });
+
+        it('should process feed while extracting data from the html into a specific format', done => {
+            var config = {
+                url: 'test.url',
+                fields: [{
+                    field: 'testField',
+                    selector: 'div > img',
+                    attr: 'src',
+                    format: '<img src="%s" />'
+                }]
+            };
+
+            rss.update(config, (err, result) => {
+                expect(result.url).to.equal('test.url');
+                expect(result.testField).to.equal('<img src="awesomeimage.jpg" />');
+                expect(result.date).to.be.instanceof(Date);
+                done();
+            })
+        });
+
+        it('should process feed while evaluating a script as content', done => {
+            var config = {
+                url: 'test.url',
+                fields: [{
+                    field: 'testField',
+                    evaluate: 'return "testData"'
+                }]
+            };
+
+            rss.update(config, (err, result) => {
+                expect(result.url).to.equal('test.url');
+                expect(result.testField).to.equal('testData');
+                expect(result.date).to.be.instanceof(Date);
+                done();
+            })
+        });
     });
 
     describe('#process()', () => {
+        it('should not process if cooldown is still active', () => {
+            gently.expect(rss.storage, 'getConfig', feedName => {
+                return {
+                    lastUpdate: Date.now(),
+                    cooldown: 60
+                }
+            });
 
+            var result = rss.process('testFeed');
+            expect(result).to.be.undefined;
+            gently.verify()
+        });
+
+        it('should process an update and store it', () => {
+            gently.expect(rss.storage, 'getConfig', feedName => { return {
+                name: feedName
+            }});
+
+            gently.expect(rss, 'update', (feedConfig, cb) => cb(null, {
+                title: 'testEntry'
+            }));
+
+            gently.expect(rss.storage, 'last', () => { return {
+                title: 'previousEntry'
+            }});
+
+            gently.expect(rss, 'checkContent', () => false);
+
+            gently.expect(rss.storage, 'append', (feedName, entry, feedConfig) => {
+                expect(feedName).to.equal('testFeed');
+                expect(entry.title).to.equal('testEntry');
+                expect(feedConfig.name).to.equal('testFeed');
+            });
+
+            var result = rss.process('testFeed');
+            expect(result).to.be.undefined;
+            gently.verify()
+        });
     });
 
     describe('#cron()', () => {

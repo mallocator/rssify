@@ -31,16 +31,17 @@
   },
   "example2": {
     "url": "http://example2.com/",
+    "cooldown": 1440,
     "fields": [
       {
         "field": "description",
-        "selector": "#comic-1 > a > img",
+        "selector": "#comic > a > img",
         "attr": "src",
         "format": "<img src=\"%s\" />"
       },
       {
         "field": "title",
-        "selector": "#comic-1 > a > img",
+        "selector": "#comic > a > img",
         "attr": "alt"
       }
     ]

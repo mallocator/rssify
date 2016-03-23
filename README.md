@@ -56,6 +56,7 @@ Feed configs are defined by their feed name as property and the configuration ob
 
 ```url``` The address where the server should check for updates  
 ```interval``` The interval in minutes between crawling a web page again  
+```cooldown``` How long to wait (in minutes) after a new entry has been found until we look again
 ```size``` The maximum number of items that are reporting on this feed  
 ```validate``` An array of field names that will be checked to determine if content has changed/updated
 ```fields``` An array of field configurations. See below for more info.  
