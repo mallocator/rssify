@@ -29,7 +29,7 @@ that content as rss feed:
 ## Daemonizing
 
 If you want to have the server run as a daemon I recommend using a 3rd party tool such as 
-[initid-forever](https://github.com/92bondstreet/initd-forever)
+[initd-forever](https://github.com/92bondstreet/initd-forever)
 
 ## Running
 
